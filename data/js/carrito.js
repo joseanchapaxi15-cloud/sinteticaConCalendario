@@ -1,7 +1,8 @@
 const lista = document.getElementById("lista-carrito");
 const totalCompra = document.getElementById("total_compra");
-const botonVaciar = document.getElementById("vaciar-carrito"); // <--- Agregamos esta referencia
+const botonVaciar = document.getElementById("vaciar-carrito");
 
+// Obtenemos los productos del almacenamiento local
 let productosCarrito = JSON.parse(localStorage.getItem("carrito_productos")) || [];
 
 const mostrarCarrito = () => {
@@ -12,7 +13,7 @@ const mostrarCarrito = () => {
         lista.innerHTML = `
             <div class="text-center py-10">
                 <p class="text-gray-400 text-lg">Tu carrito está vacío ⚽</p>
-                <a href="Tienda.html" class="text-green-400 hover:text-green-300 underline text-sm mt-2 inline-block">Ir a ver productos</a>
+                <a href="tienda.html" class="text-green-400 hover:text-green-300 underline text-sm mt-2 inline-block">Ir a ver productos</a>
             </div>
         `;
         totalCompra.textContent = "$0.00";
@@ -20,9 +21,10 @@ const mostrarCarrito = () => {
     }
 
     productosCarrito.forEach((producto, index) => {
-        totalPago += parseFloat(producto.precio);
+        // Aseguramos que el precio sea un número válido
+        const precioNumerico = parseFloat(producto.precio) || 0;
+        totalPago += precioNumerico;
 
-        // HTML mejorado para que se vea bien en tu nuevo diseño
         lista.innerHTML += `
             <div class="flex justify-between items-center border-b border-white/10 py-4 px-2 hover:bg-white/5 transition">
                 <div>
@@ -30,7 +32,7 @@ const mostrarCarrito = () => {
                     <p class="text-xs text-gray-400 uppercase tracking-widest">Artículo Deportivo</p>
                 </div>
                 <div class="flex items-center gap-6">
-                    <span class="text-green-400 font-black text-xl">$${parseFloat(producto.precio).toFixed(2)}</span>
+                    <span class="text-green-400 font-black text-xl">$${precioNumerico.toFixed(2)}</span>
                     <button data-index="${index}" class="btn-eliminar bg-red-500/10 hover:bg-red-500 text-red-500 hover:text-white w-8 h-8 rounded-full transition flex items-center justify-center font-bold">
                         ✕
                     </button>
@@ -42,24 +44,22 @@ const mostrarCarrito = () => {
     totalCompra.textContent = `$${totalPago.toFixed(2)}`;
 };
 
-// 👉 Lógica para Vaciar todo el Carrito
+// Lógica para Vaciar todo el Carrito
 if (botonVaciar) {
     botonVaciar.addEventListener("click", () => {
         if (productosCarrito.length > 0) {
             if (confirm("¿Quieres quitar todos los productos del carrito?")) {
-                productosCarrito = []; // Vaciamos el array
-                localStorage.setItem("carrito_productos", JSON.stringify(productosCarrito)); // Actualizamos storage
-                mostrarCarrito(); // Refrescamos la vista
+                productosCarrito = [];
+                localStorage.setItem("carrito_productos", JSON.stringify(productosCarrito));
+                mostrarCarrito();
             }
         }
     });
 }
 
-// 👉 Eliminar producto individual
+// Eliminar producto individual
 lista.addEventListener("click", e => {
-    // Buscamos si el click fue en el botón o en un hijo del botón
     const boton = e.target.closest(".btn-eliminar");
-    
     if (boton) {
         const index = boton.dataset.index;
         productosCarrito.splice(index, 1);
@@ -68,5 +68,5 @@ lista.addEventListener("click", e => {
     }
 });
 
-// Inicializar
+// Inicializar la vista al cargar
 mostrarCarrito();

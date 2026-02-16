@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     const gridInicio = document.getElementById('grid-inicio');
     const gridFin = document.getElementById('grid-fin');
 
+    // URL de tu Google Apps Script
     const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwvhZR5qBm_bUGSnVZtT3TXL4O2zthL4VjBnWIIn8ELLtaT3t4CR4geHHamae9zd9Cv/exec"; 
     
     let eventosGoogle = [];
@@ -13,66 +14,70 @@ document.addEventListener("DOMContentLoaded", async function () {
             eventosGoogle = await res.json();
             console.log("Calendario sincronizado: ", eventosGoogle.length, " eventos.");
         } catch (e) { 
-            console.error("Error cargando Google Calendar"); 
+            console.error("Error cargando Google Calendar:", e); 
         }
     }
 
+    // Ejecutamos la carga inicial
     await cargarEventos();
 
-    inputFecha.addEventListener('change', function () {
-        const fecha = inputFecha.value;
-        if (!fecha) return;
+    if (inputFecha) {
+        inputFecha.addEventListener('change', function () {
+            const fecha = inputFecha.value;
+            if (!fecha) return;
 
-        gridInicio.innerHTML = ''; 
-        gridFin.innerHTML = '<p class="text-gray-500 text-[10px] col-span-2 text-center italic mt-4">Elige inicio primero...</p>';
-        
-        const partesFecha = fecha.split('-');
+            gridInicio.innerHTML = ''; 
+            gridFin.innerHTML = '<p class="text-gray-500 text-[10px] col-span-2 text-center italic mt-4">Elige inicio primero...</p>';
+            
+            const partesFecha = fecha.split('-'); // [año, mes, día]
 
-        for (let h = 8; h <= 22; h += 0.5) {
-            const horas = Math.floor(h);
-            const minutos = (h % 1 === 0) ? 0 : 30;
-            const horaStr = (horas < 10 ? '0' + horas : horas) + ":" + (minutos === 0 ? "00" : "30");
-            
-            // Creamos el momento exacto para comparar con Google
-            const momentoEvaluar = new Date(partesFecha[0], partesFecha[1] - 1, partesFecha[2], horas, minutos, 0).getTime();
-            
-            const estaOcupado = eventosGoogle.some(evt => {
-                // Bloqueamos si el inicio del turno está dentro de una reserva de Google
-                return momentoEvaluar >= evt.inicio && momentoEvaluar < evt.fin;
-            });
+            // Generamos slots de 8:00 AM a 10:00 PM (22:00)
+            for (let h = 8; h <= 22; h += 0.5) {
+                const horas = Math.floor(h);
+                const minutos = (h % 1 === 0) ? 0 : 30;
+                const horaStr = (horas < 10 ? '0' + horas : horas) + ":" + (minutos === 0 ? "00" : "30");
+                
+                // Usamos la fecha local para evitar desfases de zona horaria
+                const momentoEvaluar = new Date(partesFecha[0], partesFecha[1] - 1, partesFecha[2], horas, minutos, 0).getTime();
+                
+                const estaOcupado = eventosGoogle.some(evt => {
+                    return momentoEvaluar >= evt.inicio && momentoEvaluar < evt.fin;
+                });
 
-            const boton = document.createElement('button');
-            boton.innerText = horaStr;
-            
-            if (estaOcupado) {
-                boton.className = "bg-red-900/20 text-red-500 p-2 rounded-xl opacity-50 cursor-not-allowed text-[10px] border border-red-500/20";
-                boton.disabled = true;
-            } else {
-                boton.className = "bg-green-500/10 text-green-400 border border-green-500/20 p-2 rounded-xl text-[10px] hover:bg-green-500 hover:text-black font-bold transition-all";
-                boton.onclick = () => {
-                    limpiarSeleccion(gridInicio);
-                    boton.className = "bg-green-500 text-green-950 p-2 rounded-xl text-[10px] font-black shadow-lg shadow-green-500/40 transform scale-105";
-                    cargarHorasFin(h, fecha, partesFecha);
-                };
+                const boton = document.createElement('button');
+                boton.innerText = horaStr;
+                
+                if (estaOcupado) {
+                    boton.className = "bg-red-900/20 text-red-500 p-2 rounded-xl opacity-50 cursor-not-allowed text-[10px] border border-red-500/20";
+                    boton.disabled = true;
+                } else {
+                    boton.className = "bg-green-500/10 text-green-400 border border-green-500/20 p-2 rounded-xl text-[10px] hover:bg-green-500 hover:text-black font-bold transition-all";
+                    boton.onclick = () => {
+                        limpiarSeleccion(gridInicio);
+                        boton.className = "bg-green-500 text-green-950 p-2 rounded-xl text-[10px] font-black shadow-lg shadow-green-500/40 transform scale-105";
+                        cargarHorasFin(h, fecha, partesFecha);
+                    };
+                }
+                gridInicio.appendChild(boton);
             }
-            gridInicio.appendChild(boton);
-        }
-    });
+        });
+    }
 
     function cargarHorasFin(horaInicioDecimal, fecha, partesFecha) {
         gridFin.innerHTML = '';
         
+        // El fin siempre es al menos 30 min después del inicio
         for (let h = horaInicioDecimal + 0.5; h <= 23.5; h += 0.5) {
             const horas = Math.floor(h);
             const minutos = (h % 1 === 0) ? 0 : 30;
             const horaStr = (horas < 10 ? '0' + horas : horas) + ":" + (minutos === 0 ? "00" : "30");
             
-            // Evaluamos si el bloque de tiempo (desde el inicio hasta este fin) choca con algo
             const momentoFinParaEvaluar = new Date(partesFecha[0], partesFecha[1] - 1, partesFecha[2], horas, minutos, 0).getTime();
+            const momentoInicioSeleccionado = new Date(partesFecha[0], partesFecha[1] - 1, partesFecha[2], Math.floor(horaInicioDecimal), (horaInicioDecimal % 1 === 0 ? 0 : 30), 0).getTime();
             
-            // Si hay un evento que empieza ANTES de esta hora de fin, pero DESPUÉS de la hora de inicio seleccionada, cortamos.
+            // Si hay un evento que se cruza entre el inicio elegido y esta hora de fin potencial
             const choquePosterior = eventosGoogle.some(evt => {
-                return evt.inicio < momentoFinParaEvaluar && evt.inicio >= new Date(partesFecha[0], partesFecha[1] - 1, partesFecha[2], Math.floor(horaInicioDecimal), (horaInicioDecimal % 1 === 0 ? 0 : 30), 0).getTime();
+                return evt.inicio < momentoFinParaEvaluar && evt.inicio >= momentoInicioSeleccionado;
             });
             
             if (choquePosterior) break; 

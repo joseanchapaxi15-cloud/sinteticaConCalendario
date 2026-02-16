@@ -4,22 +4,22 @@ const contenedor = document.getElementById("contenedor-productos");
 let carrito = JSON.parse(localStorage.getItem("carrito_productos")) || [];
 
 /**
- * 1. CORRECCIÓN DE RUTA PARA NETLIFY
- * Quitamos "/public" porque al subir la carpeta a Netlify, 
- * su contenido se convierte en la raíz del sitio.
+ * CORRECCIÓN DE RUTA UNIVERSAL
+ * Usamos "../productos.json" porque el JS está en 'data/js' 
+ * y el JSON está en 'data/'. Subimos un nivel.
  */
-fetch("/data/productos.json")
+fetch("../productos.json")
   .then(res => {
-    if (!res.ok) throw new Error("No se encontró el archivo JSON en /data/productos.json");
+    if (!res.ok) throw new Error("No se encontró productos.json en la carpeta data");
     return res.json();
   })
   .then(productos => {
+    if (!contenedor) return;
     contenedor.innerHTML = ""; // Limpiar mensaje de carga
 
     productos.forEach(producto => {
       const card = document.createElement("div");
       
-      // Diseño Glassmorphism mejorado
       card.className = `
         bg-white/5 backdrop-blur-md text-white rounded-3xl border border-white/10 shadow-2xl p-6
         flex flex-col items-center hover:-translate-y-2 transition-all duration-300
@@ -27,7 +27,7 @@ fetch("/data/productos.json")
 
       card.innerHTML = `
         <div class="w-full h-48 flex items-center justify-center mb-6 overflow-hidden rounded-2xl bg-white/5">
-            <img src="../${producto.imagen}" 
+            <img src="../image/${producto.imagen}" 
                  alt="${producto.nombre}"
                  class="max-w-[80%] max-h-[80%] object-contain drop-shadow-[0_10px_10px_rgba(0,0,0,0.5)]">
         </div>
@@ -37,7 +37,7 @@ fetch("/data/productos.json")
         </h3>
 
         <p class="text-2xl font-black text-green-400 mb-6">
-          $${producto.precio.toFixed(2)}
+          $${parseFloat(producto.precio).toFixed(2)}
         </p>
 
         <button 
@@ -52,42 +52,40 @@ fetch("/data/productos.json")
     });
   })
   .catch(err => {
-    // Mensaje de error visual para el usuario
+    if (!contenedor) return;
     contenedor.innerHTML = `
       <div class="col-span-full text-center py-20 bg-red-500/10 border border-red-500/20 rounded-3xl">
         <p class="text-red-400 font-bold text-xl mb-2">⚠️ Error al cargar el catálogo</p>
         <p class="text-gray-400 text-sm mb-4">Detalle: ${err.message}</p>
-        <div class="text-xs text-gray-500 space-y-1">
-          <p>Verifica que el archivo esté en: <span class="text-white">public/data/productos.json</span></p>
-          <p>Y que el nombre sea exactamente ese (todo en minúsculas).</p>
-        </div>
       </div>
     `;
     console.error("Detalle técnico del error:", err);
   });
 
-// 2. LÓGICA DEL CARRITO
-contenedor.addEventListener("click", e => {
-  const btn = e.target.closest(".btn_agregar");
-  if (!btn) return;
+// LÓGICA DEL CARRITO
+if (contenedor) {
+    contenedor.addEventListener("click", e => {
+      const btn = e.target.closest(".btn_agregar");
+      if (!btn) return;
 
-  const producto = {
-    nombre: btn.dataset.nombre,
-    precio: Number(btn.dataset.precio)
-  };
+      const producto = {
+        nombre: btn.dataset.nombre,
+        precio: Number(btn.dataset.precio)
+      };
 
-  carrito.push(producto);
-  localStorage.setItem("carrito_productos", JSON.stringify(carrito));
+      carrito.push(producto);
+      localStorage.setItem("carrito_productos", JSON.stringify(carrito));
 
-  // Animación de feedback en el botón
-  const textoOriginal = btn.innerText;
-  btn.innerText = "¡Agregado! ⚽";
-  btn.classList.replace("bg-green-500", "bg-white");
-  btn.classList.replace("text-green-950", "text-black");
-  
-  setTimeout(() => {
-    btn.innerText = textoOriginal;
-    btn.classList.replace("bg-white", "bg-green-500");
-    btn.classList.replace("text-black", "text-green-950");
-  }, 1000);
-});
+      // Animación de feedback
+      const textoOriginal = btn.innerText;
+      btn.innerText = "¡Agregado! ⚽";
+      btn.style.backgroundColor = "white";
+      btn.style.color = "black";
+      
+      setTimeout(() => {
+        btn.innerText = textoOriginal;
+        btn.style.backgroundColor = ""; // Vuelve al original de la clase
+        btn.style.color = "";
+      }, 1000);
+    });
+}
