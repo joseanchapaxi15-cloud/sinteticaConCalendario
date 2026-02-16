@@ -9,16 +9,23 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Roboto', sans-serif; }
+        body {
+            font-family: 'Roboto', sans-serif;
+        }
+
         .bg-grama {
             background-color: #1a3a17;
             background-image: url('https://www.transparenttextures.com/patterns/stardust.png');
         }
+
         .timeline-line {
             width: 2px;
             background: linear-gradient(to bottom, #4ade80, transparent);
         }
-        .text-shadow-glow { text-shadow: 0 0 15px rgba(74, 222, 128, 0.6); }
+
+        .text-shadow-glow {
+            text-shadow: 0 0 15px rgba(74, 222, 128, 0.6);
+        }
     </style>
 </head>
 
@@ -31,9 +38,11 @@
                     class="h-10 w-10 rounded-full border-2 border-green-400">
                 <span class="font-bold text-lg tracking-tight">Sintética La Arcadia</span>
             </a>
+
             <nav class="space-x-8 hidden md:flex font-bold uppercase text-sm">
                 <a href="../../index.html" class="hover:text-green-400 transition">Inicio</a>
-                <a href="historia.html" class="text-green-400 border-b-2 border-green-400 pb-1">Historia</a>
+
+                <a href="historia.html" class="hover:text-green-400 transition">Historia</a>
                 <a href="tienda.html" class="hover:text-green-400 transition">Tienda</a>
                 <a href="promociones.html" class="hover:text-green-400 transition text-yellow-400">Promos & Torneos</a>
                 <a href="carrito.html" class="hover:text-green-400 transition">🛒 Carrito</a>
@@ -53,15 +62,18 @@
 
     <main class="container mx-auto pb-24 px-6 max-w-5xl">
         <div class="relative">
-            <div class="hidden md:block absolute left-1/2 transform -translate-x-1/2 h-full timeline-line opacity-30"></div>
+            <div class="hidden md:block absolute left-1/2 transform -translate-x-1/2 h-full timeline-line opacity-30">
+            </div>
 
             <div class="space-y-16">
                 <div class="flex flex-col md:flex-row items-center justify-between">
-                    <div class="md:w-5/12 bg-white/10 backdrop-blur-md p-8 rounded-3xl border border-white/10 shadow-xl">
+                    <div
+                        class="md:w-5/12 bg-white/10 backdrop-blur-md p-8 rounded-3xl border border-white/10 shadow-xl">
                         <span class="text-green-400 font-bold text-sm tracking-widest uppercase">El Comienzo</span>
                         <h3 class="text-2xl font-bold mt-2 mb-4">Un Sueño de Barrio</h3>
                         <p class="text-gray-300 leading-relaxed">
-                            La Arcadia nació de un sueño compartido. Años atrás, este era solo un terreno vacío donde niños y jóvenes improvisaban partidos.
+                            La Arcadia nació de un sueño compartido. Años atrás, este era solo un terreno vacío donde
+                            niños y jóvenes improvisaban partidos.
                         </p>
                     </div>
                     <div class="hidden md:flex w-2/12 justify-center relative z-10">
@@ -74,7 +86,8 @@
                 </div>
 
                 <div class="flex flex-col md:flex-row-reverse items-center justify-between">
-                    <div class="md:w-5/12 bg-white/10 backdrop-blur-md p-8 rounded-3xl border border-white/10 shadow-xl">
+                    <div
+                        class="md:w-5/12 bg-white/10 backdrop-blur-md p-8 rounded-3xl border border-white/10 shadow-xl">
                         <span class="text-green-400 font-bold text-sm tracking-widest uppercase">La Evolución</span>
                         <h3 class="text-2xl font-bold mt-2 mb-4">Construyendo Pasión</h3>
                         <p class="text-gray-300 leading-relaxed">
@@ -91,7 +104,8 @@
                 </div>
 
                 <div class="flex flex-col md:flex-row items-center justify-between">
-                    <div class="md:w-5/12 bg-white/10 backdrop-blur-md p-8 rounded-3xl border border-white/10 shadow-xl border-green-500/30">
+                    <div
+                        class="md:w-5/12 bg-white/10 backdrop-blur-md p-8 rounded-3xl border border-white/10 shadow-xl border-green-500/30">
                         <span class="text-green-400 font-bold text-sm tracking-widest uppercase">Hoy</span>
                         <h3 class="text-2xl font-bold mt-2 mb-4">Más que una Cancha</h3>
                         <p class="text-gray-300 leading-relaxed italic">
@@ -111,9 +125,11 @@
     </main>
 
     <footer class="bg-green-950 py-12 text-center border-t border-green-900">
-        <p class="text-gray-500 text-sm mb-4 italic">"La Arcadia es y seguirá siendo la casa del fútbol y la amistad."</p>
+        <p class="text-gray-500 text-sm mb-4 italic">"La Arcadia es y seguirá siendo la casa del fútbol y la amistad."
+        </p>
         <p class="text-gray-400">© 2026 Sintética La Arcadia. Quito, Ecuador</p>
     </footer>
 
 </body>
+
 </html>
