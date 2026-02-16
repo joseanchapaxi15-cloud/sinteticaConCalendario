@@ -1,0 +1,98 @@
+:root {
+    --verde-principal: #6CA651;
+    --verde-oscuro: #14532d;
+    --verde-claro: #BBCB2E;
+    --texto: #1f2937;
+    --blanco: #ffffff;
+}
+
+/* RESET BÁSICO */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ESTILO GLOBAL */
+body {
+    background-color: var(--verde-principal);
+    font-family: "Roboto", sans-serif;
+    color: var(--texto);
+}
+
+/* CONTENEDORES */
+.container {
+    max-width: 1200px;
+    margin: auto;
+}
+
+/* HEADER */
+header {
+    background-color: var(--blanco);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 50;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.logo-text {
+    color: var(--verde-oscuro);
+    font-weight: bold;
+}
+
+/* LINKS */
+a {
+    text-decoration: none;
+    color: var(--texto);
+    font-weight: 500;
+}
+
+a:hover {
+    color: var(--verde-claro);
+}
+
+/* HERO */
+.hero {
+    background-color: var(--verde-oscuro);
+    color: var(--blanco);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 100px;
+    text-align: center;
+}
+
+/* TITULOS */
+h1, h2, h3 {
+    color: var(--verde-oscuro);
+}
+
+/* TARJETAS */
+.card {
+    background-color: var(--blanco);
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+/* FOOTER */
+footer {
+    background-color: var(--verde-oscuro);
+    color: var(--blanco);
+    padding: 2rem 1rem;
+    text-align: center;
+}
+
+/* MAPA */
+.mapa {
+    width: 100%;
+    max-width: 420px;
+    height: 300px;
+    margin: 1rem auto;
+    display: block;
+    border-radius: 12px;
+    border: 0;
+}

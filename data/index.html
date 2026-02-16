@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="image/logo_sintetica.jpg">
+  <title>Sintética La Arcadia - Inicio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap" rel="stylesheet">
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+    }
+
+    .bg-grama {
+      background-color: #1a3a17;
+      background-image: url('https://www.transparenttextures.com/patterns/stardust.png');
+    }
+
+    .hero-glow {
+      text-shadow: 0 0 20px rgba(74, 222, 128, 0.5);
+    }
+
+    .map-container {
+      filter: grayscale(100%) invert(92%) contrast(83%);
+      border: 1px solid rgba(74, 222, 128, 0.3);
+    }
+  </style>
+</head>
+
+<body class="bg-grama text-white">
+
+  <header class="bg-green-900/90 sticky top-0 z-50 backdrop-blur-sm shadow-xl border-b border-green-700">
+    <div class="container mx-auto flex justify-between items-center p-4">
+      <a href="index.html" class="flex items-center space-x-3">
+        <img src="image/logo_sintetica.jpg" alt="Logo" class="h-10 w-10 rounded-full border-2 border-green-400">
+        <span class="font-bold text-lg tracking-tight text-white">Sintética La Arcadia</span>
+      </a>
+      <nav class="space-x-8 hidden md:flex font-bold uppercase text-sm">
+        <a href="index.html" class="text-green-400 border-b-2 border-green-400 pb-1">Inicio</a>
+        <a href="pages/Historia.html" class="hover:text-green-400 transition">Historia</a>
+        <a href="pages/Tienda.html" class="hover:text-green-400 transition">Tienda</a>
+        <a href="pages/promociones.html" class="hover:text-green-400 transition text-yellow-400">Promos & Torneos</a>
+        <a href="pages/carrito.html" class="hover:text-green-400 transition">🛒 Carrito</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="relative h-[70vh] flex items-center justify-center overflow-hidden border-b border-green-800">
+      <div class="absolute inset-0 z-0">
+        <img
+          src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80"
+          alt="Cancha Sintética" class="w-full h-full object-cover opacity-30">
+      </div>
+      <div class="relative z-10 text-center px-6">
+        <h1 class="text-6xl md:text-8xl font-black uppercase italic tracking-tighter hero-glow">
+          Domina la <span class="text-green-400">Cancha</span>
+        </h1>
+        <p class="text-xl md:text-2xl mt-4 font-light tracking-widest text-gray-200">
+          La mejor experiencia deportiva en el sur de Quito
+        </p>
+        <div class="mt-10">
+          <a href="#reservas"
+            class="bg-green-500 hover:bg-green-400 text-green-950 font-black px-12 py-4 rounded-xl uppercase tracking-widest transition transform hover:scale-105 shadow-2xl inline-block">
+            Reservar Ahora
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-10 bg-yellow-500 text-black">
+      <div
+        class="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
+        <div class="flex items-center gap-4">
+          <span class="text-4xl">🏆</span>
+          <div>
+            <h3 class="text-xl font-black uppercase italic leading-none">Inscripciones Abiertas</h3>
+            <p class="font-bold opacity-80 text-sm">Copa S. Campeones y VII Torneo de Futsal Arcadia.</p>
+          </div>
+        </div>
+        <a href="pages/promociones.html"
+          class="bg-black text-white px-8 py-3 rounded-full font-black uppercase tracking-widest hover:scale-105 transition text-sm">
+          Ver Detalles
+        </a>
+      </div>
+    </section>
+
+    <section class="py-20 container mx-auto px-6">
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="p-8 bg-white/5 rounded-3xl border border-white/10 text-center">
+          <div class="text-4xl mb-4">💡</div>
+          <h3 class="text-xl font-black uppercase italic text-green-400">Iluminación LED</h3>
+          <p class="text-gray-400 mt-2 text-sm">Visibilidad perfecta para tus partidos nocturnos hasta las 23:00h.</p>
+        </div>
+        <div class="p-8 bg-white/5 rounded-3xl border border-white/10 text-center">
+          <div class="text-4xl mb-4">🍻</div>
+          <h3 class="text-xl font-black uppercase italic text-green-400">Bar & Snacks</h3>
+          <p class="text-gray-400 mt-2 text-sm">Bebidas heladas y las mejores salchipapas para después del juego.</p>
+        </div>
+        <div class="p-8 bg-white/5 rounded-3xl border border-white/10 text-center">
+          <div class="text-4xl mb-4">🚗</div>
+          <h3 class="text-xl font-black uppercase italic text-green-400">Seguridad</h3>
+          <p class="text-gray-400 mt-2 text-sm">Parqueadero privado para que juegues con total tranquilidad.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-20 bg-black/40">
+      <div class="container mx-auto px-6">
+        <div class="flex flex-col lg:flex-row items-center gap-12">
+          <div class="lg:w-1/3">
+            <h2 class="text-5xl font-black uppercase italic tracking-tighter mb-6 leading-none text-green-400">
+              Ubicación <br>Estratégica
+            </h2>
+            <div class="space-y-4">
+              <p class="text-gray-300">
+                <strong class="text-white block text-lg font-bold">Dirección:</strong>
+                Calle S44, La Arcadia (Frente al terminal), Quito.
+              </p>
+              <p class="text-gray-300">
+                <strong class="text-white block text-lg font-bold">Atención:</strong>
+                Lunes a Domingo: 08:00 AM - 11:00 PM
+              </p>
+              <div class="pt-4">
+                <span
+                  class="bg-green-500/20 text-green-400 border border-green-500/30 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest">Fácil
+                  acceso</span>
+              </div>
+            </div>
+          </div>
+          <div class="lg:w-2/3 w-full h-[450px] rounded-[2rem] overflow-hidden shadow-2xl map-container">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.76073674489!2d-78.5516987263584!3d-0.30783003533665027!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x91d5a309e9343155%3A0x49f515a0d8018b98!2sCANCHA%20SINTETICA%20LA%20ARCADIA!5e0!3m2!1ses-419!2sus!4v1770595454204!5m2!1ses-419!2sus"
+              width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <section class="py-20 bg-black/20" id="reservas">
+    <div class="container mx-auto px-6 text-center">
+      <h2 class="text-4xl font-black uppercase mb-8 text-green-400">Reserva tu Horario</h2>
+
+      <div class="max-w-md mx-auto bg-white/5 p-8 rounded-3xl border border-white/10 backdrop-blur-md">
+        <p class="text-green-400 font-bold mb-2 uppercase text-sm text-center">1. Selecciona el Día</p>
+        <input type="date" id="fecha-reserva"
+          class="w-full p-3 rounded-xl bg-black/40 border border-green-500/30 text-white mb-6 text-center">
+
+        <p class="text-green-400 font-bold mb-4 uppercase text-sm text-center">2. Selecciona tu Turno</p>
+
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <p class="text-[10px] uppercase text-gray-400 mb-2 text-center">Hora Inicio</p>
+            <div id="grid-inicio" class="grid grid-cols-2 gap-2">
+            </div>
+          </div>
+
+          <div>
+            <p class="text-[10px] uppercase text-gray-400 mb-2 text-center">Hora Fin</p>
+            <div id="grid-fin" class="grid grid-cols-2 gap-2">
+              <p class="text-gray-500 text-[9px] col-span-2 text-center italic mt-2">Elige inicio primero...</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <footer class="bg-black py-10 text-center md:text-left">
+    <div
+      class="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6 font-bold uppercase text-[10px] tracking-[0.2em] text-gray-500">
+      <p>© 2026 Sintética La Arcadia - Quito Sur</p>
+      <div class="flex gap-6">
+        <a href="https://wa.me/593998667865" class="hover:text-green-400 transition">WhatsApp</a>
+        <a href="#" class="hover:text-green-400 transition">Facebook</a>
+        <a href="#" class="hover:text-green-400 transition">Instagram</a>
+      </div>
+    </div>
+  </footer>
+
+  <a href="https://wa.me/593998667865?text=Hola Cancha Sintetica La Arcadia, Me Gustaria Reservar La cancha"
+    class="fixed bottom-6 right-6 bg-green-500 p-4 rounded-full shadow-2xl hover:bg-green-400 transition transform hover:scale-110 z-50">
+    <svg width="24" height="24" fill="currentColor" viewBox="0 0 448 512" class="text-green-950">
+      <path
+        d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.4 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-5.6-2.8-23.5-8.7-44.8-27.7-16.6-14.8-27.8-33.1-31.1-38.6-3.2-5.6-.3-8.6 2.5-11.4 2.5-2.5 5.6-6.5 8.3-9.7 2.8-3.3 3.7-5.6 5.6-9.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.4-29.8-17-41.1-4.5-10.9-9.1-9.5-12.4-9.6l-10.6-.2c-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 13.2 5.8 23.5 9.2 31.5 11.8 13.3 4.2 25.4 3.6 35 2.2 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z" />
+    </svg>
+  </a>
+  <script src="js/reservas.js"></script>
+</body>
+
+</html>
