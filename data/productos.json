@@ -2,21 +2,21 @@
   {
     "nombre": "Gatorade",
     "precio": 1.50,
-    "imagen": "image/gatorade.jpg",
+    "imagen": "data/image/gatorade.jpg",
     "ancho": 160,
     "alto": 160
   },
   {
     "nombre": "Agua Tesalia",
     "precio": 1.50,
-    "imagen": "image/agua.jpg",
+    "imagen": "data/image/agua.jpg",
     "ancho": 160,
     "alto": 160
   },
   {
     "nombre": "V220",
     "precio": 1.00,
-    "imagen": "image/220v.jpg",
+    "imagen": "data/image/220v.jpg",
     "ancho": 160,
     "alto": 160
   }
